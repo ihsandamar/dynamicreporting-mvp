@@ -1,0 +1,10 @@
+LANGCHAIN_TRACING_V2 = "true"
+LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
+LANGCHAIN_API_KEY="LANGCHAIN_API_KEY"
+GOOGLE_API_KEY="GOOGLE_API_KEY"
+OPENAI_API_KEY = "OPENAI_API_KEY"
+OPENAI_API_TYPE = ""
+OPENAI_API_MODEL_NAME = "gpt-4o" #gpt-4o #gpt-4o-mini
+OPENAI_API_BASE = ""
+# ConnectionString = "mssql+pyodbc://sa:Vega1234@DESKTOP-TIEAGO8/School?driver=ODBC+Driver+17+for+SQL+Server"
+ConnectionString = "mssql+pyodbc://sa:Vega1234@DESKTOP-TIEAGO8/AdventureWorks2022?driver=ODBC+Driver+17+for+SQL+Server"
