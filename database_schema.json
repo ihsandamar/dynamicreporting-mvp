@@ -1,2029 +1,363 @@
 {
-    "AWBuildVersion": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "SystemInformationID"
-        ],
-        "foreign_keys": []
-    },
-    "DatabaseLog": {
-        "columns": {
-            "name": "XmlEvent",
-            "type": "XML",
-            "nullable": false,
-            "default": null
-        },
-        "primary_keys": [
-            "DatabaseLogID"
-        ],
-        "foreign_keys": []
-    },
-    "ErrorLog": {
-        "columns": {
-            "name": "ErrorMessage",
-            "type": "NVARCHAR(4000) COLLATE \"SQL_Latin1_General_CP1_CI_AS\"",
-            "nullable": false,
-            "default": null
-        },
-        "primary_keys": [
-            "ErrorLogID"
-        ],
-        "foreign_keys": []
-    },
-    "sysdiagrams": {
-        "columns": {
-            "name": "definition",
-            "type": "VARBINARY",
-            "nullable": true,
-            "default": null
-        },
-        "primary_keys": [
-            "diagram_id"
-        ],
-        "foreign_keys": []
-    },
-    "Department": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "DepartmentID"
-        ],
-        "foreign_keys": []
-    },
-    "Employee": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Employee_Person_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Person",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "EmployeeDepartmentHistory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID",
-            "StartDate",
-            "DepartmentID",
-            "ShiftID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_EmployeeDepartmentHistory_Department_DepartmentID",
-                "constrained_columns": [
-                    "DepartmentID"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Department",
-                "referred_columns": [
-                    "DepartmentID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_EmployeeDepartmentHistory_Employee_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Employee",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_EmployeeDepartmentHistory_Shift_ShiftID",
-                "constrained_columns": [
-                    "ShiftID"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Shift",
-                "referred_columns": [
-                    "ShiftID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "EmployeePayHistory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID",
-            "RateChangeDate"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_EmployeePayHistory_Employee_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Employee",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "JobCandidate": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "JobCandidateID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_JobCandidate_Employee_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Employee",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "Shift": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ShiftID"
-        ],
-        "foreign_keys": []
-    },
-    "Address": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "AddressID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Address_StateProvince_StateProvinceID",
-                "constrained_columns": [
-                    "StateProvinceID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "StateProvince",
-                "referred_columns": [
-                    "StateProvinceID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "AddressType": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "AddressTypeID"
-        ],
-        "foreign_keys": []
-    },
-    "BusinessEntity": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID"
-        ],
-        "foreign_keys": []
-    },
-    "BusinessEntityAddress": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID",
-            "AddressID",
-            "AddressTypeID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_BusinessEntityAddress_Address_AddressID",
-                "constrained_columns": [
-                    "AddressID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Address",
-                "referred_columns": [
-                    "AddressID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_BusinessEntityAddress_AddressType_AddressTypeID",
-                "constrained_columns": [
-                    "AddressTypeID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "AddressType",
-                "referred_columns": [
-                    "AddressTypeID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "BusinessEntity",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "BusinessEntityContact": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID",
-            "PersonID",
-            "ContactTypeID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_BusinessEntityContact_BusinessEntity_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "BusinessEntity",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_BusinessEntityContact_ContactType_ContactTypeID",
-                "constrained_columns": [
-                    "ContactTypeID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "ContactType",
-                "referred_columns": [
-                    "ContactTypeID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_BusinessEntityContact_Person_PersonID",
-                "constrained_columns": [
-                    "PersonID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Person",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ContactType": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ContactTypeID"
-        ],
-        "foreign_keys": []
-    },
-    "CountryRegion": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "CountryRegionCode"
-        ],
-        "foreign_keys": []
-    },
-    "EmailAddress": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID",
-            "EmailAddressID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_EmailAddress_Person_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Person",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "Password": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Password_Person_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Person",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "Person": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Person_BusinessEntity_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "BusinessEntity",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "PersonPhone": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID",
-            "PhoneNumber",
-            "PhoneNumberTypeID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_PersonPhone_Person_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Person",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID",
-                "constrained_columns": [
-                    "PhoneNumberTypeID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "PhoneNumberType",
-                "referred_columns": [
-                    "PhoneNumberTypeID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "PhoneNumberType": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "PhoneNumberTypeID"
-        ],
-        "foreign_keys": []
-    },
-    "StateProvince": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "StateProvinceID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_StateProvince_CountryRegion_CountryRegionCode",
-                "constrained_columns": [
-                    "CountryRegionCode"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "CountryRegion",
-                "referred_columns": [
-                    "CountryRegionCode"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_StateProvince_SalesTerritory_TerritoryID",
-                "constrained_columns": [
-                    "TerritoryID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesTerritory",
-                "referred_columns": [
-                    "TerritoryID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "BillOfMaterials": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BillOfMaterialsID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_BillOfMaterials_Product_ComponentID",
-                "constrained_columns": [
-                    "ComponentID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_BillOfMaterials_Product_ProductAssemblyID",
-                "constrained_columns": [
-                    "ProductAssemblyID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_BillOfMaterials_UnitMeasure_UnitMeasureCode",
-                "constrained_columns": [
-                    "UnitMeasureCode"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "UnitMeasure",
-                "referred_columns": [
-                    "UnitMeasureCode"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "Culture": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "CultureID"
-        ],
-        "foreign_keys": []
-    },
-    "Document": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "DocumentNode"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Document_Employee_Owner",
-                "constrained_columns": [
-                    "Owner"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Employee",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "Illustration": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "IllustrationID"
-        ],
-        "foreign_keys": []
-    },
-    "Location": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "LocationID"
-        ],
-        "foreign_keys": []
-    },
-    "Product": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Product_ProductModel_ProductModelID",
-                "constrained_columns": [
-                    "ProductModelID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ProductModel",
-                "referred_columns": [
-                    "ProductModelID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_Product_ProductSubcategory_ProductSubcategoryID",
-                "constrained_columns": [
-                    "ProductSubcategoryID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ProductSubcategory",
-                "referred_columns": [
-                    "ProductSubcategoryID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_Product_UnitMeasure_SizeUnitMeasureCode",
-                "constrained_columns": [
-                    "SizeUnitMeasureCode"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "UnitMeasure",
-                "referred_columns": [
-                    "UnitMeasureCode"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_Product_UnitMeasure_WeightUnitMeasureCode",
-                "constrained_columns": [
-                    "WeightUnitMeasureCode"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "UnitMeasure",
-                "referred_columns": [
-                    "UnitMeasureCode"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductCategory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductCategoryID"
-        ],
-        "foreign_keys": []
-    },
-    "ProductCostHistory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductID",
-            "StartDate"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductCostHistory_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductDescription": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductDescriptionID"
-        ],
-        "foreign_keys": []
-    },
-    "ProductDocument": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductID",
-            "DocumentNode"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductDocument_Document_DocumentNode",
-                "constrained_columns": [
-                    "DocumentNode"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Document",
-                "referred_columns": [
-                    "DocumentNode"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductDocument_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductInventory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductID",
-            "LocationID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductInventory_Location_LocationID",
-                "constrained_columns": [
-                    "LocationID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Location",
-                "referred_columns": [
-                    "LocationID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductInventory_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductListPriceHistory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductID",
-            "StartDate"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductListPriceHistory_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductModel": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductModelID"
-        ],
-        "foreign_keys": []
-    },
-    "ProductModelIllustration": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductModelID",
-            "IllustrationID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductModelIllustration_Illustration_IllustrationID",
-                "constrained_columns": [
-                    "IllustrationID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Illustration",
-                "referred_columns": [
-                    "IllustrationID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductModelIllustration_ProductModel_ProductModelID",
-                "constrained_columns": [
-                    "ProductModelID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ProductModel",
-                "referred_columns": [
-                    "ProductModelID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductModelProductDescriptionCulture": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductModelID",
-            "ProductDescriptionID",
-            "CultureID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductModelProductDescriptionCulture_Culture_CultureID",
-                "constrained_columns": [
-                    "CultureID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Culture",
-                "referred_columns": [
-                    "CultureID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID",
-                "constrained_columns": [
-                    "ProductDescriptionID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ProductDescription",
-                "referred_columns": [
-                    "ProductDescriptionID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID",
-                "constrained_columns": [
-                    "ProductModelID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ProductModel",
-                "referred_columns": [
-                    "ProductModelID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductPhoto": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductPhotoID"
-        ],
-        "foreign_keys": []
-    },
-    "ProductProductPhoto": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductID",
-            "ProductPhotoID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductProductPhoto_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductProductPhoto_ProductPhoto_ProductPhotoID",
-                "constrained_columns": [
-                    "ProductPhotoID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ProductPhoto",
-                "referred_columns": [
-                    "ProductPhotoID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductReview": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductReviewID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductReview_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductSubcategory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductSubcategoryID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductSubcategory_ProductCategory_ProductCategoryID",
-                "constrained_columns": [
-                    "ProductCategoryID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ProductCategory",
-                "referred_columns": [
-                    "ProductCategoryID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ScrapReason": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ScrapReasonID"
-        ],
-        "foreign_keys": []
-    },
-    "TransactionHistory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "TransactionID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_TransactionHistory_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "TransactionHistoryArchive": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "TransactionID"
-        ],
-        "foreign_keys": []
-    },
-    "UnitMeasure": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "UnitMeasureCode"
-        ],
-        "foreign_keys": []
-    },
-    "WorkOrder": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "WorkOrderID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_WorkOrder_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_WorkOrder_ScrapReason_ScrapReasonID",
-                "constrained_columns": [
-                    "ScrapReasonID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "ScrapReason",
-                "referred_columns": [
-                    "ScrapReasonID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "WorkOrderRouting": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "WorkOrderID",
-            "ProductID",
-            "OperationSequence"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_WorkOrderRouting_Location_LocationID",
-                "constrained_columns": [
-                    "LocationID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Location",
-                "referred_columns": [
-                    "LocationID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_WorkOrderRouting_WorkOrder_WorkOrderID",
-                "constrained_columns": [
-                    "WorkOrderID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "WorkOrder",
-                "referred_columns": [
-                    "WorkOrderID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ProductVendor": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ProductID",
-            "BusinessEntityID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ProductVendor_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductVendor_UnitMeasure_UnitMeasureCode",
-                "constrained_columns": [
-                    "UnitMeasureCode"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "UnitMeasure",
-                "referred_columns": [
-                    "UnitMeasureCode"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_ProductVendor_Vendor_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Purchasing",
-                "referred_table": "Vendor",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "PurchaseOrderDetail": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "PurchaseOrderID",
-            "PurchaseOrderDetailID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_PurchaseOrderDetail_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID",
-                "constrained_columns": [
-                    "PurchaseOrderID"
-                ],
-                "referred_schema": "Purchasing",
-                "referred_table": "PurchaseOrderHeader",
-                "referred_columns": [
-                    "PurchaseOrderID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "PurchaseOrderHeader": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "PurchaseOrderID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_PurchaseOrderHeader_Employee_EmployeeID",
-                "constrained_columns": [
-                    "EmployeeID"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Employee",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_PurchaseOrderHeader_ShipMethod_ShipMethodID",
-                "constrained_columns": [
-                    "ShipMethodID"
-                ],
-                "referred_schema": "Purchasing",
-                "referred_table": "ShipMethod",
-                "referred_columns": [
-                    "ShipMethodID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_PurchaseOrderHeader_Vendor_VendorID",
-                "constrained_columns": [
-                    "VendorID"
-                ],
-                "referred_schema": "Purchasing",
-                "referred_table": "Vendor",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ShipMethod": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "ShipMethodID"
-        ],
-        "foreign_keys": []
-    },
-    "Vendor": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Vendor_BusinessEntity_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "BusinessEntity",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "CountryRegionCurrency": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "CountryRegionCode",
-            "CurrencyCode"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_CountryRegionCurrency_CountryRegion_CountryRegionCode",
-                "constrained_columns": [
-                    "CountryRegionCode"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "CountryRegion",
-                "referred_columns": [
-                    "CountryRegionCode"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_CountryRegionCurrency_Currency_CurrencyCode",
-                "constrained_columns": [
-                    "CurrencyCode"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "Currency",
-                "referred_columns": [
-                    "CurrencyCode"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "CreditCard": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "CreditCardID"
-        ],
-        "foreign_keys": []
-    },
-    "Currency": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "CurrencyCode"
-        ],
-        "foreign_keys": []
-    },
-    "CurrencyRate": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "CurrencyRateID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_CurrencyRate_Currency_FromCurrencyCode",
-                "constrained_columns": [
-                    "FromCurrencyCode"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "Currency",
-                "referred_columns": [
-                    "CurrencyCode"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_CurrencyRate_Currency_ToCurrencyCode",
-                "constrained_columns": [
-                    "ToCurrencyCode"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "Currency",
-                "referred_columns": [
-                    "CurrencyCode"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "Customer": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "CustomerID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Customer_Person_PersonID",
-                "constrained_columns": [
-                    "PersonID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Person",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_Customer_SalesTerritory_TerritoryID",
-                "constrained_columns": [
-                    "TerritoryID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesTerritory",
-                "referred_columns": [
-                    "TerritoryID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_Customer_Store_StoreID",
-                "constrained_columns": [
-                    "StoreID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "Store",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "PersonCreditCard": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID",
-            "CreditCardID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_PersonCreditCard_CreditCard_CreditCardID",
-                "constrained_columns": [
-                    "CreditCardID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "CreditCard",
-                "referred_columns": [
-                    "CreditCardID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_PersonCreditCard_Person_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Person",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesOrderDetail": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "SalesOrderID",
-            "SalesOrderDetailID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID",
-                "constrained_columns": [
-                    "SalesOrderID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesOrderHeader",
-                "referred_columns": [
-                    "SalesOrderID"
-                ],
-                "options": {
-                    "ondelete": "CASCADE"
+    "db_accessadmin": {},
+    "db_backupoperator": {},
+    "db_datareader": {},
+    "db_datawriter": {},
+    "db_ddladmin": {},
+    "db_denydatareader": {},
+    "db_denydatawriter": {},
+    "db_owner": {},
+    "db_securityadmin": {},
+    "dbo": {
+        "Course": {
+            "columns": [
+                {
+                    "name": "CourseID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Title",
+                    "type": "NVARCHAR(100) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Credits",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "DepartmentID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
                 }
-            },
-            {
-                "name": "FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID",
-                "constrained_columns": [
-                    "SpecialOfferID",
-                    "ProductID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SpecialOfferProduct",
-                "referred_columns": [
-                    "SpecialOfferID",
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesOrderHeader": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "SalesOrderID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesOrderHeader_Address_BillToAddressID",
-                "constrained_columns": [
-                    "BillToAddressID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Address",
-                "referred_columns": [
-                    "AddressID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesOrderHeader_Address_ShipToAddressID",
-                "constrained_columns": [
-                    "ShipToAddressID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "Address",
-                "referred_columns": [
-                    "AddressID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesOrderHeader_CreditCard_CreditCardID",
-                "constrained_columns": [
-                    "CreditCardID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "CreditCard",
-                "referred_columns": [
-                    "CreditCardID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesOrderHeader_CurrencyRate_CurrencyRateID",
-                "constrained_columns": [
-                    "CurrencyRateID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "CurrencyRate",
-                "referred_columns": [
-                    "CurrencyRateID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesOrderHeader_Customer_CustomerID",
-                "constrained_columns": [
-                    "CustomerID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "Customer",
-                "referred_columns": [
-                    "CustomerID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesOrderHeader_SalesPerson_SalesPersonID",
-                "constrained_columns": [
-                    "SalesPersonID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesPerson",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesOrderHeader_SalesTerritory_TerritoryID",
-                "constrained_columns": [
-                    "TerritoryID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesTerritory",
-                "referred_columns": [
-                    "TerritoryID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesOrderHeader_ShipMethod_ShipMethodID",
-                "constrained_columns": [
-                    "ShipMethodID"
-                ],
-                "referred_schema": "Purchasing",
-                "referred_table": "ShipMethod",
-                "referred_columns": [
-                    "ShipMethodID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesOrderHeaderSalesReason": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "SalesOrderID",
-            "SalesReasonID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID",
-                "constrained_columns": [
-                    "SalesOrderID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesOrderHeader",
-                "referred_columns": [
-                    "SalesOrderID"
-                ],
-                "options": {
-                    "ondelete": "CASCADE"
+            ],
+            "primary_keys": [
+                "CourseID"
+            ],
+            "foreign_keys": [
+                {
+                    "name": "FK_Course_Department",
+                    "constrained_columns": [
+                        "DepartmentID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Department",
+                    "referred_columns": [
+                        "DepartmentID"
+                    ],
+                    "options": {}
                 }
-            },
-            {
-                "name": "FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID",
-                "constrained_columns": [
-                    "SalesReasonID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesReason",
-                "referred_columns": [
-                    "SalesReasonID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesPerson": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
+            ]
         },
-        "primary_keys": [
-            "BusinessEntityID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesPerson_Employee_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "HumanResources",
-                "referred_table": "Employee",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesPerson_SalesTerritory_TerritoryID",
-                "constrained_columns": [
-                    "TerritoryID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesTerritory",
-                "referred_columns": [
-                    "TerritoryID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesPersonQuotaHistory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
+        "CourseInstructor": {
+            "columns": [
+                {
+                    "name": "CourseID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "PersonID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                }
+            ],
+            "primary_keys": [
+                "CourseID",
+                "PersonID"
+            ],
+            "foreign_keys": [
+                {
+                    "name": "FK_CourseInstructor_Course",
+                    "constrained_columns": [
+                        "CourseID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Course",
+                    "referred_columns": [
+                        "CourseID"
+                    ],
+                    "options": {}
+                },
+                {
+                    "name": "FK_CourseInstructor_Person",
+                    "constrained_columns": [
+                        "PersonID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Person",
+                    "referred_columns": [
+                        "PersonID"
+                    ],
+                    "options": {}
+                }
+            ]
         },
-        "primary_keys": [
-            "BusinessEntityID",
-            "QuotaDate"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesPerson",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesReason": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
+        "Department": {
+            "columns": [
+                {
+                    "name": "DepartmentID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Name",
+                    "type": "NVARCHAR(50) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Budget",
+                    "type": "MONEY",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "StartDate",
+                    "type": "DATETIME",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Administrator",
+                    "type": "INTEGER",
+                    "nullable": true,
+                    "default": null
+                }
+            ],
+            "primary_keys": [
+                "DepartmentID"
+            ],
+            "foreign_keys": []
         },
-        "primary_keys": [
-            "SalesReasonID"
-        ],
-        "foreign_keys": []
-    },
-    "SalesTaxRate": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
+        "OfficeAssignment": {
+            "columns": [
+                {
+                    "name": "InstructorID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Location",
+                    "type": "NVARCHAR(50) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Timestamp",
+                    "type": "TIMESTAMP",
+                    "nullable": false,
+                    "default": null
+                }
+            ],
+            "primary_keys": [
+                "InstructorID"
+            ],
+            "foreign_keys": [
+                {
+                    "name": "FK_OfficeAssignment_Person",
+                    "constrained_columns": [
+                        "InstructorID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Person",
+                    "referred_columns": [
+                        "PersonID"
+                    ],
+                    "options": {}
+                }
+            ]
         },
-        "primary_keys": [
-            "SalesTaxRateID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesTaxRate_StateProvince_StateProvinceID",
-                "constrained_columns": [
-                    "StateProvinceID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "StateProvince",
-                "referred_columns": [
-                    "StateProvinceID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesTerritory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
+        "OnlineCourse": {
+            "columns": [
+                {
+                    "name": "CourseID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "URL",
+                    "type": "NVARCHAR(100) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                }
+            ],
+            "primary_keys": [
+                "CourseID"
+            ],
+            "foreign_keys": [
+                {
+                    "name": "FK_OnlineCourse_Course",
+                    "constrained_columns": [
+                        "CourseID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Course",
+                    "referred_columns": [
+                        "CourseID"
+                    ],
+                    "options": {}
+                }
+            ]
         },
-        "primary_keys": [
-            "TerritoryID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesTerritory_CountryRegion_CountryRegionCode",
-                "constrained_columns": [
-                    "CountryRegionCode"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "CountryRegion",
-                "referred_columns": [
-                    "CountryRegionCode"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "SalesTerritoryHistory": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
+        "OnsiteCourse": {
+            "columns": [
+                {
+                    "name": "CourseID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Location",
+                    "type": "NVARCHAR(50) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Days",
+                    "type": "NVARCHAR(50) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Time",
+                    "type": "SMALLDATETIME",
+                    "nullable": false,
+                    "default": null
+                }
+            ],
+            "primary_keys": [
+                "CourseID"
+            ],
+            "foreign_keys": [
+                {
+                    "name": "FK_OnsiteCourse_Course",
+                    "constrained_columns": [
+                        "CourseID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Course",
+                    "referred_columns": [
+                        "CourseID"
+                    ],
+                    "options": {}
+                }
+            ]
         },
-        "primary_keys": [
-            "BusinessEntityID",
-            "StartDate",
-            "TerritoryID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesPerson",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SalesTerritoryHistory_SalesTerritory_TerritoryID",
-                "constrained_columns": [
-                    "TerritoryID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesTerritory",
-                "referred_columns": [
-                    "TerritoryID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "ShoppingCartItem": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
+        "Person": {
+            "columns": [
+                {
+                    "name": "PersonID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "LastName",
+                    "type": "NVARCHAR(50) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "FirstName",
+                    "type": "NVARCHAR(50) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "HireDate",
+                    "type": "DATETIME",
+                    "nullable": true,
+                    "default": null
+                },
+                {
+                    "name": "EnrollmentDate",
+                    "type": "DATETIME",
+                    "nullable": true,
+                    "default": null
+                },
+                {
+                    "name": "Discriminator",
+                    "type": "NVARCHAR(50) COLLATE \"Turkish_CI_AS\"",
+                    "nullable": false,
+                    "default": null
+                }
+            ],
+            "primary_keys": [
+                "PersonID"
+            ],
+            "foreign_keys": []
         },
-        "primary_keys": [
-            "ShoppingCartItemID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_ShoppingCartItem_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            }
-        ]
+        "StudentGrade": {
+            "columns": [
+                {
+                    "name": "EnrollmentID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "CourseID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "StudentID",
+                    "type": "INTEGER",
+                    "nullable": false,
+                    "default": null
+                },
+                {
+                    "name": "Grade",
+                    "type": "DECIMAL(3, 2)",
+                    "nullable": true,
+                    "default": null
+                }
+            ],
+            "primary_keys": [
+                "EnrollmentID"
+            ],
+            "foreign_keys": [
+                {
+                    "name": "FK_StudentGrade_Course",
+                    "constrained_columns": [
+                        "CourseID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Course",
+                    "referred_columns": [
+                        "CourseID"
+                    ],
+                    "options": {}
+                },
+                {
+                    "name": "FK_StudentGrade_Student",
+                    "constrained_columns": [
+                        "StudentID"
+                    ],
+                    "referred_schema": "dbo",
+                    "referred_table": "Person",
+                    "referred_columns": [
+                        "PersonID"
+                    ],
+                    "options": {}
+                }
+            ]
+        }
     },
-    "SpecialOffer": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "SpecialOfferID"
-        ],
-        "foreign_keys": []
-    },
-    "SpecialOfferProduct": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "SpecialOfferID",
-            "ProductID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_SpecialOfferProduct_Product_ProductID",
-                "constrained_columns": [
-                    "ProductID"
-                ],
-                "referred_schema": "Production",
-                "referred_table": "Product",
-                "referred_columns": [
-                    "ProductID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID",
-                "constrained_columns": [
-                    "SpecialOfferID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SpecialOffer",
-                "referred_columns": [
-                    "SpecialOfferID"
-                ],
-                "options": {}
-            }
-        ]
-    },
-    "Store": {
-        "columns": {
-            "name": "ModifiedDate",
-            "type": "DATETIME",
-            "nullable": false,
-            "default": "(getdate())"
-        },
-        "primary_keys": [
-            "BusinessEntityID"
-        ],
-        "foreign_keys": [
-            {
-                "name": "FK_Store_BusinessEntity_BusinessEntityID",
-                "constrained_columns": [
-                    "BusinessEntityID"
-                ],
-                "referred_schema": "Person",
-                "referred_table": "BusinessEntity",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            },
-            {
-                "name": "FK_Store_SalesPerson_SalesPersonID",
-                "constrained_columns": [
-                    "SalesPersonID"
-                ],
-                "referred_schema": "Sales",
-                "referred_table": "SalesPerson",
-                "referred_columns": [
-                    "BusinessEntityID"
-                ],
-                "options": {}
-            }
-        ]
-    }
+    "guest": {},
+    "INFORMATION_SCHEMA": {},
+    "sys": {}
 }

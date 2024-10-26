@@ -1,0 +1,272 @@
+[
+    {
+        "Table_Name": "Course",
+        "Table_Description": {
+            "English": "Table that defines educational courses.",
+            "Turkish": "Eğitim derslerini tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "CourseID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "Title",
+                "Data_Type": "NVARCHAR(100)"
+            },
+            {
+                "Column_Name": "Credits",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "DepartmentID",
+                "Data_Type": "INTEGER"
+            }
+        ],
+        "Primary_Keys": ["CourseID"],
+        "Foreign_Keys": [
+            {
+                "Name": "FK_Course_Department",
+                "Constrained_Columns": ["DepartmentID"],
+                "Referred_Table": "Department",
+                "Referred_Columns": ["DepartmentID"]
+            }
+        ],
+        "TurkishMeaning": "Ders"
+    },
+    {
+        "Table_Name": "CourseInstructor",
+        "Table_Description": {
+            "English": "Table that defines the relationship between courses and instructors.",
+            "Turkish": "Ders ve eğitmen ilişkisini tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "CourseID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "PersonID",
+                "Data_Type": "INTEGER"
+            }
+        ],
+        "Primary_Keys": ["CourseID", "PersonID"],
+        "Foreign_Keys": [
+            {
+                "Name": "FK_CourseInstructor_Course",
+                "Constrained_Columns": ["CourseID"],
+                "Referred_Table": "Course",
+                "Referred_Columns": ["CourseID"]
+            },
+            {
+                "Name": "FK_CourseInstructor_Person",
+                "Constrained_Columns": ["PersonID"],
+                "Referred_Table": "Person",
+                "Referred_Columns": ["PersonID"]
+            }
+        ],
+        "TurkishMeaning": "Ders Eğitmeni"
+    },
+    {
+        "Table_Name": "Department",
+        "Table_Description": {
+            "English": "Table that defines departments.",
+            "Turkish": "Departmanları tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "DepartmentID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "Name",
+                "Data_Type": "NVARCHAR(50)"
+            },
+            {
+                "Column_Name": "Budget",
+                "Data_Type": "MONEY"
+            },
+            {
+                "Column_Name": "StartDate",
+                "Data_Type": "DATETIME"
+            },
+            {
+                "Column_Name": "Administrator",
+                "Data_Type": "INTEGER"
+            }
+        ],
+        "Primary_Keys": ["DepartmentID"],
+        "Foreign_Keys": [],
+        "TurkishMeaning": "Departman"
+    },
+    {
+        "Table_Name": "OfficeAssignment",
+        "Table_Description": {
+            "English": "Table that defines office assignments for instructors.",
+            "Turkish": "Eğitmenlerin ofis atamalarını tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "InstructorID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "Location",
+                "Data_Type": "NVARCHAR(50)"
+            },
+            {
+                "Column_Name": "Timestamp",
+                "Data_Type": "TIMESTAMP"
+            }
+        ],
+        "Primary_Keys": ["InstructorID"],
+        "Foreign_Keys": [
+            {
+                "Name": "FK_OfficeAssignment_Person",
+                "Constrained_Columns": ["InstructorID"],
+                "Referred_Table": "Person",
+                "Referred_Columns": ["PersonID"]
+            }
+        ],
+        "TurkishMeaning": "Ofis Ataması"
+    },
+    {
+        "Table_Name": "OnlineCourse",
+        "Table_Description": {
+            "English": "Table that defines online courses.",
+            "Turkish": "Çevrimiçi dersleri tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "CourseID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "URL",
+                "Data_Type": "NVARCHAR(100)"
+            }
+        ],
+        "Primary_Keys": ["CourseID"],
+        "Foreign_Keys": [
+            {
+                "Name": "FK_OnlineCourse_Course",
+                "Constrained_Columns": ["CourseID"],
+                "Referred_Table": "Course",
+                "Referred_Columns": ["CourseID"]
+            }
+        ],
+        "TurkishMeaning": "Çevrimiçi Ders"
+    },
+    {
+        "Table_Name": "OnsiteCourse",
+        "Table_Description": {
+            "English": "Table that defines onsite courses.",
+            "Turkish": "Yerinde dersleri tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "CourseID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "Location",
+                "Data_Type": "NVARCHAR(50)"
+            },
+            {
+                "Column_Name": "Days",
+                "Data_Type": "NVARCHAR(50)"
+            },
+            {
+                "Column_Name": "Time",
+                "Data_Type": "SMALLDATETIME"
+            }
+        ],
+        "Primary_Keys": ["CourseID"],
+        "Foreign_Keys": [
+            {
+                "Name": "FK_OnsiteCourse_Course",
+                "Constrained_Columns": ["CourseID"],
+                "Referred_Table": "Course",
+                "Referred_Columns": ["CourseID"]
+            }
+        ],
+        "TurkishMeaning": "Yerinde Ders"
+    },
+    {
+        "Table_Name": "Person",
+        "Table_Description": {
+            "English": "Table that defines persons.",
+            "Turkish": "Kişileri tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "PersonID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "LastName",
+                "Data_Type": "NVARCHAR(50)"
+            },
+            {
+                "Column_Name": "FirstName",
+                "Data_Type": "NVARCHAR(50)"
+            },
+            {
+                "Column_Name": "HireDate",
+                "Data_Type": "DATETIME"
+            },
+            {
+                "Column_Name": "EnrollmentDate",
+                "Data_Type": "DATETIME"
+            },
+            {
+                "Column_Name": "Discriminator",
+                "Data_Type": "NVARCHAR(50)"
+            }
+        ],
+        "Primary_Keys": ["PersonID"],
+        "Foreign_Keys": [],
+        "TurkishMeaning": "Kişi"
+    },
+    {
+        "Table_Name": "StudentGrade",
+        "Table_Description": {
+            "English": "Table that defines student grades.",
+            "Turkish": "Öğrenci notlarını tanımlayan tablo."
+        },
+        "Columns": [
+            {
+                "Column_Name": "EnrollmentID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "CourseID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "StudentID",
+                "Data_Type": "INTEGER"
+            },
+            {
+                "Column_Name": "Grade",
+                "Data_Type": "DECIMAL(3, 2)"
+            }
+        ],
+        "Primary_Keys": ["EnrollmentID"],
+        "Foreign_Keys": [
+            {
+                "Name": "FK_StudentGrade_Course",
+                "Constrained_Columns": ["CourseID"],
+                "Referred_Table": "Course",
+                "Referred_Columns": ["CourseID"]
+            },
+            {
+                "Name": "FK_StudentGrade_Student",
+                "Constrained_Columns": ["StudentID"],
+                "Referred_Table": "Person",
+                "Referred_Columns": ["PersonID"]
+            }
+        ],
+        "TurkishMeaning": "Öğrenci Notu"
+    }
+]
